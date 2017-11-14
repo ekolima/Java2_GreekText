@@ -1,6 +1,6 @@
 // len_s and len_t are the number of characters in string s and t respectively
 public class Suggestion1 {
-	public int LevenshteinDistance(String s, int len_s, String t, int len_t) {
+	public int LevenshteinDistance(String s, String t, int len_s, int len_t) {
 		int cost;
 		int result = -1;
 		int j = java.lang.Math.max(len_s,len_t);
@@ -29,5 +29,3 @@ public class Suggestion1 {
 		return result;
 	}
 }
-
-
