@@ -1,9 +1,9 @@
 // len_s and len_t are the number of characters in string s and t respectively
 public class Suggestion1 {
-	public int LevenshteinDistance(String s, String t, int len_s, int len_t) {
+	public int LevenshteinDistance(String s, int len_s, String t, int len_t) {
 		int cost;
 		int result = -1;
-		int j = java.lang.Math.max(len_s,len_t);
+		int j = Math.max(len_s,len_t);
 
 		if (len_s ==0 || len_t == 0) {
 			if (len_s == 0) {
@@ -19,7 +19,7 @@ public class Suggestion1 {
 					} else {
 					cost = 1;
 					}
-				result = java.lang.Math.min(java.lang.Math.min(LevenshteinDistance(s, len_s - 1, t, len_t) + 1,
+				result = Math.min(Math.min(LevenshteinDistance(s, len_s - 1, t, len_t) + 1,
                  LevenshteinDistance(s, len_s    , t, len_t - 1) + 1),
                  LevenshteinDistance(s, len_s - 1, t, len_t - 1) + cost);
                 }
