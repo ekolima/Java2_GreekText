@@ -17,7 +17,7 @@ public class Dictionary1 {
 	ifstream File;
 
 	//anoigma arxeiou gia na diavasei
-	File.open("goose.txt");
+	File.open("el_GRDict3.txt");
 
 	if (File.is_open()) {
     	//diavasma leksis leksis
