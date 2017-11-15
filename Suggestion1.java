@@ -5,7 +5,7 @@ public class Suggestion1 {
 		int cost;
 		int result = -1;
 		int j = Math.max(len_s,len_t);
-		if (len_s ==0 || len_t == 0) {
+		if (len_s == 0 || len_t == 0) {
 			if (len_s == 0) {
 				result = len_t;
 			} else {
@@ -13,7 +13,7 @@ public class Suggestion1 {
 			}
 		} else {
 			for (int i = 0; i < j; i++) {
-				if (s.substring(len_s-1) == t.substring(len_t-1)) {
+				if (s.substring(len_s - 1) == t.substring(len_t - 1)) {
 					cost = 0;
 				} else {
 					cost = 1;
