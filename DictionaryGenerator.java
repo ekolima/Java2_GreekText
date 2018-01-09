@@ -1,84 +1,77 @@
 import java.io.*;
 import java.util.*;
-import java.nio.file.Paths;
 
+/**
+ * @author Danay Kape
+ * @author Eirini Kolimatsi
+ *         <p>
+ *         The {@code DictionaryGenerator} class asks the user to pick a
+ *         language (Greek, English and Italian) and then generates for him or her a HashMap dictionary,
+ *         based on which the spell check will be done.
+ */
 public class DictionaryGenerator {
-	private static Scanner input;
 
-	/*public static HashMap<keyObject, String> createDictionary() {
-		openFile();
-		HashMap<keyObject, String>  shm = new HashMap<keyObject, String>();
-		readWords(shm);
-		closeFile();
-		return shm;
-	}*/
-
-	public static ArrayList<String> createDictionary() {
-		openFile();
-		ArrayList<String>  shm = new ArrayList<String>();
-		readWords(shm);
-		closeFile();
-		return shm;
-	}
-
-	public static ArrayList<String> createSoundExDictionary(ArrayList<String> a) {
-		ArrayList<String> als = new ArrayList<String>();
-		for (int i = 0 ; i < a.size() ; i++) {
-			als.add(Suggestions.SoundExAlgorithm(a.get(i)));
+	/**
+	 * The {@code dictionary} method contains a dialogue with the user and prompts
+	 * him to choose the language of the dictionary and the spellchecking process
+	 * generally.
+	 * 
+	 * @return A HashMap that contains a dictionary in it.
+	 */
+	public static HashMap<Integer, String> dictionary() {
+		String language;
+		System.out.println("1 - Greek");
+		System.out.println("2 - English");
+		System.out.println("3 - Italian");
+		System.out.println("0 - Exit");
+		System.out.println("Choose text language, by entering its code as mentioned above: ");
+		int languageChoice = WordSearch.getChoice(3);
+		if (languageChoice == 1) {
+			language = "el_GRDict4.txt";
+		} else if (languageChoice == 2) {
+			language = "en_ENDict.txt";
+		} else if (languageChoice == 3) {
+			language = "it_ITDict.txt";
+		} else {
+			language = null;
+			System.out.println("-----------------------------------------");
+			System.out.println("Thank you very much for using our software");
+			System.out.println("-----------------------------------------");
+			System.out.println("----- Development : Jarvellous.exe ------");
+			System.out.println("-----------------------------------------");
+			System.exit(0);
 		}
-		return als;
+		HashMap<Integer, String> dictionary = createHashMap(language);
+		return dictionary;
 	}
 
-	public static ArrayList<keyObject> extraArrayList(ArrayList<String> d){
-		ArrayList<keyObject> al = new ArrayList<keyObject>();
-		//run for all the dictionary
-		for (int i = 0 ; i < d.size() ; i++) {
-			//if the word has at least 2 letters
-			if (d.get(i).length() > 1) {
-				//if there is something in the array list
-				if (!al.isEmpty()) {
-					//if the first 2 letters of the current word are different than those of the previous one
-					if (al.get(al.size()-1).getFirst2Letters() != d.get(i).substring(0,2)) {
-						al.get(al.size()-1).setIndexEnd(i-1);
-						al.add(new keyObject(i, 0, d.get(i).substring(0,2)));
-					}
-				//if the array list is empty
-				} else {
-					al.add(new keyObject(0, 0, d.get(i).substring(0,2)));
-				}
-			//is the dictionary entry is just a letter
-			} else {
-				al.add(new keyObject(i, i, d.get(i)));
-			}
-		}
-		return al;
-	}
-
-	public static void openFile() {
+	/**
+	 * The {@code createHashMap} method makes a connection between dictionary as txt
+	 * and dictionary as a collection.
+	 * <p>
+	 * 
+	 * @param fileName
+	 *            File's name.
+	 * @return a HashMap containing all the words of the given file.
+	 */
+	public static HashMap<Integer, String> createHashMap(String fileName) {
+		HashMap<Integer, String> dictionary = new HashMap<Integer, String>();
 		try {
-			input = new Scanner(Paths.get("el_GRDict3.txt"));
-		} catch (IOException e){
-			System.out.println("Error occured while opening the file. Terminating.");
-			System.exit(1);
-		}
-	}
-
-	public static void readWords(ArrayList<String> h) {
-		try {
-			while (input.hasNext()) {
-				String b = input.nextLine();
-				h.add(b);
+			// when i = 0, the element with key =0 was null. This way it's ok.
+			int i = -1;
+			BufferedReader reader = new BufferedReader(
+					new InputStreamReader(new FileInputStream("src/".concat(fileName)), "ISO-8859-7"));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				i++;
+				dictionary.put(i, line);
 			}
-		} catch (NoSuchElementException e) {
-			System.err.println("File improperly formed. Terminating.");
-		} catch (IllegalStateException e) {
-			System.err.println("Error while reading from the file. Terminating.");
-		}
-	}
-
-	public static void closeFile(){
-		if (input != null) {
-			input.close();
+			reader.close();
+			return dictionary;
+		} catch (Exception e) {
+			System.err.format("Exception occurred trying to read '%s'.", fileName);
+			e.printStackTrace();
+			return null;
 		}
 	}
 }
