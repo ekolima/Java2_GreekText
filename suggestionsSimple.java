@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Suggestions {
+public class suggestionsSimple {
 
 	static Scanner scan = new Scanner(System.in);
 
