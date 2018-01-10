@@ -1,11 +1,10 @@
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.*;
 
 /**
- * @author Stelios Nikolos
- * @author Vasilis Panagopoulos
- * @author Eirini Kolimatsi
+ * @author Team jarvellous.exe
  *         <p>
  *         The class {@code inputFromTXT} gets user's input, in 2 possible ways:
  *         <p>
@@ -48,7 +47,7 @@ public class inputFromTXT {
 		Scanner scan = new Scanner(System.in);
 		String name;
 		if (choice == 0) {
-			System.out.println("Insert the path of txt file: \nFor example: src/TestFile.txt");
+			System.out.println("Insert the path of txt file: \nFor example: src/main/resources/TestFile.txt");
 			name = scan.nextLine();
 		} else {
 			readCMD();
