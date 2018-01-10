@@ -1,13 +1,12 @@
 import java.util.*;
 
 /**
- * The {@code suggestionsSimple} class suggests in a simple way what may the
- * user means for the given words that weren't found in the dictionary.
- * <p>
- * 
- * @author Kaiti Thoma
- * @author Eirini Kolimatsi
- *
+ * @author Team jarvellous.exe
+ *         <p>
+ *         The {@code suggestionsSimple} class suggests in a simple way what may
+ *         the user means for the given words that weren't found in the
+ *         dictionary.
+ *         <p>
  */
 public class suggestionsSimple {
 
@@ -29,7 +28,7 @@ public class suggestionsSimple {
 		ArrayList<String> suggestions = new ArrayList<String>();
 		int dist;
 		for (int i = 0; i < dictionary.size(); i++) {
-				dist = Levinstein(dictionary.get(i), word);
+			dist = Levinstein(dictionary.get(i), word);
 			if (word.length() == 2) {
 				if (dist <= 0.5 * word.length()) {
 					suggestions.add(dictionary.get(i));
