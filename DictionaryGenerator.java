@@ -28,7 +28,7 @@ public class DictionaryGenerator {
 		if (languageChoice == 1) {
 			language = "el_GRDict4.txt";
 		} else if (languageChoice == 2) {
-			language = "ro_RODict.txt";
+			language = "ro_RODict (1).txt";
 		} else {
 			language = null;
 			System.out.println("-----------------------------------------");
